@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
   res.json({ name: "Hello" })
 })
 app.use('/file', file);
