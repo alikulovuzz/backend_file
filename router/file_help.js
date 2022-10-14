@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const img=require('../db/models/img')
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -22,18 +21,15 @@ router.post('/', upload.single('myFile'), async (req, res, next) => {
     }
 
     // cosnole.log(file)
-    const imagepost = new img({
-        image: file.path
-    })
+    
     console.log(file)
-    const savedimage = await imagepost.save()
-    res.json(savedimage)
+    res.json({response:"savedimage"})
 
 })
 
-router.get('/list', async (req, res) => {
-    const image = await img.find()
-    res.json(image)
+// router.get('/list', async (req, res) => {
+//     const image = await img.find()
+//     res.json(image)
 
-})
+// })
 module.exports = router;

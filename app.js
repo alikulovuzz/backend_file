@@ -1,4 +1,3 @@
-require('./db/database')
 const express = require("express");
 const cors = require('cors');
 const dotenv = require("dotenv");
@@ -15,7 +14,7 @@ const swaggerDocument = require('./docs/swagger_output.json');
 const file = require('./router/file_help');
 
 // utils
-const PORT = process.env.PORT || 0;
+const PORT = process.env.PORT || 8080;
 dotenv.config();
 const app = express();
 const HOST =  '127.0.0.1';
@@ -34,7 +33,7 @@ app.use('/welcome', (req, res) => {
     res.json({ name: "Hello" })
 })
 
-app.listen(HOST, PORT, (err) => {
+app.listen(PORT, (err) => {
   if (err) { console.log(`Error:${err}`) }
   console.log(`Running on port ${PORT}`);
 });
