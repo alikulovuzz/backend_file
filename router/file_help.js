@@ -7,12 +7,12 @@ var storage = multer.diskStorage({
         cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname)
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
     }
 })
 
 var upload = multer({ storage: storage })
-router.post('/', upload.single('myFile'), async (req, res, next) => {
+router.post('/', upload.single('file'), async (req, res, next) => {
     const file = req.file
     if (!file) {
         const error = new Error('Please upload a file')
@@ -21,9 +21,12 @@ router.post('/', upload.single('myFile'), async (req, res, next) => {
     }
 
     // cosnole.log(file)
-    
+    // const imagepost = new img({
+    //     image: file.path
+    // })
     console.log(file)
-    res.json({response:"savedimage"})
+    // const savedimage = await imagepost.save()
+    res.status(200).json({data:"File saved"})
 
 })
 
