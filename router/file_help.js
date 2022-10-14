@@ -19,20 +19,9 @@ router.post('/', upload.single('file'), async (req, res, next) => {
         error.httpStatusCode = 400
         return next("hey error")
     }
-
-    // cosnole.log(file)
-    // const imagepost = new img({
-    //     image: file.path
-    // })
     console.log(file)
-    // const savedimage = await imagepost.save()
     res.status(200).json({data:"File saved"})
 
 })
 
-// router.get('/list', async (req, res) => {
-//     const image = await img.find()
-//     res.json(image)
-
-// })
 module.exports = router;
